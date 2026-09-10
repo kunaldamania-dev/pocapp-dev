@@ -1,23 +1,20 @@
 version: 0.2
- 
+
 phases:
-  install:
-    commands:
-      - echo "No build dependencies for this static app"
- 
   build:
     commands:
-      - echo "Validating deployment package"
+      - echo "Running application tests..."
       - test -f index.html
+      - test -f hello
       - test -f health.html
       - test -f appspec.yml
       - test -f scripts/after_install.sh
-      - echo "Validation passed"
- 
+      - echo "All required files exist."
+      - echo "Testing API response..."
+      - grep -q '"status": "success"' hello
+      - echo "API response test passed."
+      - echo "Build successful."
+
 artifacts:
   files:
-    - index.html
-    - health.html
-    - appspec.yml
-    - scripts/after_install.sh
-  discard-paths: no
+    - '**/*'

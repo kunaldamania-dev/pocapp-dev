@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "message": "Request served successfully",
+  "application": "pocapp-dev",
+  "version": "2.0",
+  "environment": "dev",
+  "service": "web-api",
+  "deployment": "AWS CodeDeploy"
+}
