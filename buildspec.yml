@@ -1,0 +1,23 @@
+version: 0.2
+ 
+phases:
+  install:
+    commands:
+      - echo "No build dependencies for this static app"
+ 
+  build:
+    commands:
+      - echo "Validating deployment package"
+      - test -f index.html
+      - test -f health.html
+      - test -f appspec.yml
+      - test -f scripts/after_install.sh
+      - echo "Validation passed"
+ 
+artifacts:
+  files:
+    - index.html
+    - health.html
+    - appspec.yml
+    - scripts/after_install.sh
+  discard-paths: no
