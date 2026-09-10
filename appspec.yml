@@ -1,43 +1,20 @@
-version: 0.2
+version: 0.0
+os: linux
 
-phases:
+files:
+  - source: index.html
+    destination: /var/www/html
 
-  install:
+  - source: hello
+    destination: /var/www/html
 
-    commands:
+  - source: health.html
+    destination: /var/www/html
 
-      - echo "No build dependencies for this static app"
+file_exists_behavior: OVERWRITE
 
-  build:
-
-    commands:
-
-      - echo "Validating deployment package"
-
-      - test -f index.html
-
-      - test -f hello
-
-      - test -f health.html
-
-      - test -f appspec.yml
-
-      - test -f scripts/after_install.sh
-
-      - echo "Validation passed"
-
-artifacts:
-
-  files:
-
-    - index.html
-
-    - hello
-
-    - health.html
-
-    - appspec.yml
-
-    - scripts/after_install.sh
-
-  discard-paths: no
+hooks:
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 180
+      runas: root
